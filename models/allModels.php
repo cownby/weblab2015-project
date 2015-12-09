@@ -1,0 +1,12 @@
+<?php
+    require_once('../models/common/Helpers.php');
+    require_once('../models/common/Configuration.php');
+    require_once('../models/common/DataExport.php');
+    require_once('../models/EntryManager.abstract.php'); 
+    require_once('../models/ObservationMgr.class.php');
+    require_once('../models/PlantObservation.class.php');
+    require_once('../models/Weather.class.php');
+    require_once('../models/Location.class.php');
+    require_once('../models/UserManager.class.php');
+    require_once('../models/User.class.php');
+?>
