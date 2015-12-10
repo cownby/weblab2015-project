@@ -11,7 +11,11 @@
 
 
 <?php  
-	if (session_status() == PHP_SESSION_NONE) {session_start();}
+	
+	$configArray = parse_ini_file ( 'config.ini' );
+	$config = new Configuration($configArray['realConfigFile']);
+  $config->SaveInSession();
+
 	$action = isset($_GET["action"])?$_GET["action"]:'';
   $user = NULL;
      

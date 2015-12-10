@@ -9,9 +9,7 @@
 
 
 <?php
-	if (session_status() == PHP_SESSION_NONE) {session_start();}
-  $config = new Configuration("C:/config/config.ini");
-  $config->SaveInSession();
+
 	$ObservationMgr = new ObservationMgr();
 	$weather = new Weather();
 	$weather->RetrieveWeatherByCoordinates(40.73,-105.085);

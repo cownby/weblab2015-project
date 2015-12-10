@@ -11,7 +11,8 @@ class Configuration
 
 		
 	public function __construct($configFile) 
-	{	
+	{	        
+	
 		if (ISSET($configFile) )
 			$this->_configFile = $configFile;
 		else

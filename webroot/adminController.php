@@ -10,10 +10,12 @@
 
 <?php
 
-	if (session_status() == PHP_SESSION_NONE) {session_start();}
 	$ObservationMgr = new ObservationMgr();
 	if (!isset($user))
-		{$user = unserialize($_SESSION['FFuser']);	}
+	{
+		if (session_status() == PHP_SESSION_NONE) {session_start();}
+		$user = unserialize($_SESSION['FFuser']);	
+	}
 
 
   $action = isset($_GET["action"])?$_GET["action"]:'';

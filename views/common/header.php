@@ -1,3 +1,9 @@
+<?php 
+	error_reporting(E_ALL); 
+	ini_set("display_errors", 1); 
+	if (session_status() == PHP_SESSION_NONE) {session_start();} 
+?>
+
 <!doctype html>
 <!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
 <!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->

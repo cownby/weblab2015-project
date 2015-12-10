@@ -3,6 +3,7 @@
 	
     class Db implements db_interface{
 
+
         protected static $connection;
 
         /**
@@ -13,9 +14,19 @@
         public function connect() {    
 
             if(!isset(self::$connection)) {
-
-                $config = parse_ini_file('C:/config/config.ini'); 
-                self::$connection = new mysqli($config['host'],$config['username'],$config['password'],$config['dbname']);
+                
+                if (session_status() == PHP_SESSION_NONE) {session_start();}
+                if ( !isset($_SESSION['host'])
+                 or  !isset($_SESSION['username']) 
+                 or  !isset($_SESSION['password']) 
+                 or !isset($_SESSION['dbname']) )
+                 {
+								 	die ("db.class: can't get database connection info from session");
+								 }
+								 else
+								 {
+								 	self::$connection = new mysqli($_SESSION['host'],$_SESSION['username'],$_SESSION['password'],$_SESSION['dbname']);
+								 }
             }
 
 						
