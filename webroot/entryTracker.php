@@ -20,7 +20,7 @@
 	{
 		$userMgr = new UserManager;
 		$user = $userMgr->getUserByEmail("guest");
-		if (FALSE == $user)	die ("Cannot access guest account");
+		if (FALSE == $user)	die ("entryTracker: Cannot access guest account");
 	}
 	$username = $user->getName(); //need for display purposes
 

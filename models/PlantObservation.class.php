@@ -85,10 +85,10 @@ class PlantObservation {
     $this->setObservationDate(isset($arr["observationDate"])?$arr["observationDate"]:'');
     
     $this->setName(isset($arr["PlantName"])?$arr["PlantName"]:'plantObs:unset');
-    $this->setPlantId(isset($arr["plantId"])?$arr["plantId"]:0);
+    $this->setPlantId(isset($arr["PlantId"])?$arr["PlantId"]:0);
             
     $this->setTempF(isset($arr["DegreesF"])?$arr["DegreesF"]:'');
-    $this->setWeatherId(isset($arr["weatherId"])?$arr["weatherId"]:'');   
+    $this->setWeatherId(isset($arr["WeatherId"])?$arr["WeatherId"]:'');   
     
     $this->setLat(isset($arr["Latitude"])?$arr["Latitude"]:'');    
     $this->setLon(isset($arr["Longitude"])?$arr["Longitude"]:'');  

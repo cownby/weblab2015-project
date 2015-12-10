@@ -6,7 +6,7 @@ class DataExport
 {
 	public function toCSV($result)
 	{
-		if (!$result) die('Couldn\'t fetch records');
+		if (!$result) die('DataExport.toCSV: Couldn\'t fetch records');
 		$num_fields = mysqli_num_fields ($result);
 		$headers = array();
 		for ($i = 0; $i < $num_fields; $i++) {

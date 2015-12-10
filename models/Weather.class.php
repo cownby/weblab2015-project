@@ -6,7 +6,7 @@ require_once('../lib/db.class.php');
 final class Weather 
 {
 	// Handles weather api (and database weather table?)
-	//TODO: use session to save state for cache timing
+
 
 
 	private $dataSource;// = 'Local Cache';   
@@ -34,8 +34,10 @@ final class Weather
 			$_SESSION['lastCacheTime'] = 0;	
 		}
 		
-		$this->urlBase .= $_SESSION['openweathermapKey'];
-		
+		if (isset($_SESSION['openweathermapKey']))
+			$this->urlBase .= $_SESSION['openweathermapKey'];
+		else
+			die ("openweathermapKey not found in session");
 	}
 
 	public function getTemp(){return $this->currentTempF;}
@@ -84,8 +86,7 @@ final class Weather
 		  $json_obj = json_decode($data);
 		  //var_dump($json_obj);
 		  if(!isset($json_obj->main->temp)){
-		    echo "Danger, Will Robinson!";
-		    exit;
+		    die ("Cannot retrieve weather; does the config file have a valid key?");
 		  }
 		  // Grap temp data
 		  $this->currentTempF = $json_obj->main->temp;

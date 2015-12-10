@@ -31,7 +31,7 @@
 
 						
             if(self::$connection === false) {
-            		die('Unable to connect to database');
+            		die('"db.class: Unable to connect to database');
                 return false;
             }
             

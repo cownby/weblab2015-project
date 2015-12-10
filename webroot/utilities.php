@@ -38,7 +38,7 @@
 		if (isset($_SESSION['FFuser']))
 		{
 			$user = unserialize($_SESSION['FFuser']);	
-			if (FALSE == $user) die ("session user is invalid");	
+			if (FALSE == $user) die ("utilities.getSessionUser: session user is invalid");	
 		}
 		else
 		{
@@ -46,7 +46,7 @@
 		}
 		
 		if (NULL==$user)
-			die ("Having a really hard time setting a user!")	;
+			die ("utilities.getSessionUser: Having a really hard time setting a user!")	;
 		else
 			return $user;
 	}
@@ -54,7 +54,7 @@
 	{
 			$userManager = new UserManager();
 			$user = $userManager->getUserByEmail("guest");
-			if ($user == FALSE) die ("Cannot access guest account");
+			if ($user == FALSE) die ("utilities.addGuestUserToSession: Cannot access guest account");
 			$_SESSION['FFuser'] = serialize($user);	
 			return $user;
 	}

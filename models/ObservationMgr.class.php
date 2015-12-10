@@ -44,7 +44,7 @@ class ObservationMgr
 				$err = $this->_db->error();
 		    if (!empty($err))
 		    {
-					throw new Exception("Problem retrieving observation: ".$err);
+					throw new Exception("ObservationMgr.getObservation: Problem retrieving observation. ".$err);
 				}
       
 		    foreach($results as $result)
@@ -77,7 +77,7 @@ class ObservationMgr
 	    // test for error conditions
       $err = $this->_db->error();
 	    if (!empty($err) or FALSE == $rows)
-	    	throw new Exception("observation select failed: ".$selectStmt ." Error: ".$err);
+	    	throw new Exception("ObservationMgr.getAllObservationRecords: Observation select failed. \n$selectStmt Error: $err");
     }
     catch   (Exception $e) 
 		{
@@ -105,7 +105,7 @@ class ObservationMgr
 	    // test for error conditions
       $err = $this->_db->error();
 	    if (!empty($err)) 
-	    	throw new Exception("observation select failed: ".$selectStmt ." Error: ".$err);
+	    	throw new Exception("getAllObservationsAsMSQLiObjects: Observation select failed: $selectStmt  \nError: $err");
     }
     catch   (Exception $e) 
 		{
@@ -151,7 +151,7 @@ class ObservationMgr
 		}
 		catch  (Exception $e) 
 		{
-    	error_log('Caught exception: ' . $e->getMessage(),0);
+    	error_log('ObservationMgr.getSoilTypes exception: ' . $e->getMessage(),0);
 			//return default array
 			$soilArray = ["sand","silt","clay","loam","peat","gravel","rocky"];
 		}
@@ -166,7 +166,7 @@ class ObservationMgr
 			$result = $this->_db -> select("select soil from soilTypes where id=$soilTypeId");
 			$err = $this->_db->error();
 	    if (!empty($err) or FALSE == $result)
-	    	throw new Exception("select failed for soil type with id=($soilTypeId): ".$err);
+	    	throw new Exception("ObservationMgr.getSoilType: select failed for soil type with id=($soilTypeId): ".$err);
 	    $soilType = $result[0]['soil'];
 	  }
 		catch  (Exception $e) 
@@ -242,7 +242,7 @@ class ObservationMgr
 	 		$err = $this->_db->error();
 	    if (!empty($err))
 	    {
-				throw new Exception("Problem inserting observation: ".$err);
+				throw new Exception("ObservationMgr._add: Problem inserting observation. ".$err);
 			}
 		}
 		catch   (Exception $e) 
@@ -263,7 +263,7 @@ class ObservationMgr
  		$err = $this->_db->error();
     if (!empty($err))
     {
-			throw new Exception("Problem inserting observation: ".$err);
+			throw new Exception("ObservationMgr._update: Problem updating. ".$err);
 		}
 		
 		$this->_updatePlant($item);
@@ -285,7 +285,7 @@ class ObservationMgr
 	    $err = $this->_db->error();
 	    if (!empty($err))
 	    {
-				throw new Exception("Problem inserting plant: ".$err);
+				throw new Exception("ObservationMgr._addPlant: Problem inserting plant. ".$err);
 			}
  
 		}
@@ -307,7 +307,7 @@ class ObservationMgr
 	    $err = $this->_db->error();
 	    if (!empty($err))
 	    {
-				throw new Exception("Problem inserting plant ($id): $err");
+				throw new Exception("_updatePlant: Problem updating plant ($id): $err");
 			}
  
 		}
@@ -332,7 +332,7 @@ class ObservationMgr
 		    $err = $this->_db->error();
 		    if (!empty($err))
 		    {
-					throw new Exception("Problem inserting weather: ".$err);
+					throw new Exception("_addWEather: Problem inserting weather. ".$err);
 				}
 			} 
 		}
@@ -349,7 +349,7 @@ class ObservationMgr
   	{
   		$id = $this->_quoteOrNull($item->getWeatherId());
   		if ("NULL" == $id)
-  			throw new Exception("Cannot update weather without an id.");
+  			throw new Exception("_updateWeather: Cannot update weather without an id.");
   			
 	    if (!empty($item->getTempF()))
 			{
@@ -359,7 +359,7 @@ class ObservationMgr
 		    $err = $this->_db->error();
 		    if (!empty($err))
 		    {
-					throw new Exception("Problem updating weather: ".$err);
+					throw new Exception("_updateWeather: ".$err);
 				}
 			} 
 		}
@@ -389,7 +389,7 @@ class ObservationMgr
 		    $err = $this->_db->error();
 		    if (!empty($err))
 		    {
-					throw new Exception("Problem inserting location: ".$err);
+					throw new Exception("_addLocation: Problem inserting location. ".$err);
 				}
 			} 
 		}
@@ -405,7 +405,7 @@ class ObservationMgr
   	{
   		$id = $this->_numberOrNull($item->getLocationId());
   		if ("NULL" == $id)
-  			throw new Exception("Cannot update location without an id.");
+  			throw new Exception("_updateLocation: Cannot update location without an id.");
   			
 	    //if ( empty($item->getLat()) or empty($item->getLon()) or empty($item->getLocationNotes()) )
 	    //{
@@ -417,7 +417,7 @@ class ObservationMgr
 		    $err = $this->_db->error();
 		    if (!empty($err))
 		    {
-					throw new Exception("Problem inserting location: ".$err."\n query: ".$stmt);
+					throw new Exception("_updateLocation: $err \nquery: $stmt");
 				}
 			//} 
 		}
