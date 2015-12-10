@@ -81,10 +81,10 @@ class PlantObservation {
   public function hydrate($arr) {
   	
     $this->setId(isset($arr["id"])?$arr["id"]:'');
-    $this->setNotes(isset($arr["notes"])?$arr["notes"]:'');
+    $this->setNotes(isset($arr["notes"])?$arr["notes"]:'plantObs:unset');
     $this->setObservationDate(isset($arr["observationDate"])?$arr["observationDate"]:'');
     
-    $this->setName(isset($arr["PlantName"])?$arr["PlantName"]:'this should never happen');
+    $this->setName(isset($arr["PlantName"])?$arr["PlantName"]:'plantObs:unset');
     $this->setPlantId(isset($arr["plantId"])?$arr["plantId"]:0);
             
     $this->setTempF(isset($arr["DegreesF"])?$arr["DegreesF"]:'');
@@ -92,10 +92,10 @@ class PlantObservation {
     
     $this->setLat(isset($arr["Latitude"])?$arr["Latitude"]:'');    
     $this->setLon(isset($arr["Longitude"])?$arr["Longitude"]:'');  
-    $this->setLocationNotes(isset($arr["locationNotes"])?$arr["locationNotes"]:''); 
-    $this->setLocationId(isset($arr["locationId"])?$arr["locationId"]:''); 
+    $this->setLocationNotes(isset($arr["LocationNotes"])?$arr["LocationNotes"]:'plantObs:unset'); 
+    $this->setLocationId(isset($arr["LocationId"])?$arr["LocationId"]:''); 
       
-    $this->setSoilTypeId(isset($arr["soilTypeId"])?$arr["soilTypeId"]:'');   
+    $this->setSoilTypeId(isset($arr["SoilId"])?$arr["SoilId"]:'');   
     
     $this->setUserId(isset($arr["UserId"])?$arr["UserId"]:'');     
    

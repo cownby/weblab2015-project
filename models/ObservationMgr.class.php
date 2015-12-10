@@ -76,7 +76,7 @@ class ObservationMgr
 	    
 	    // test for error conditions
       $err = $this->_db->error();
-	    if (!empty($err or FALSE == $rows)) 
+	    if (!empty($err) or FALSE == $rows)
 	    	throw new Exception("observation select failed: ".$selectStmt ." Error: ".$err);
     }
     catch   (Exception $e) 
@@ -165,7 +165,7 @@ class ObservationMgr
 		{
 			$result = $this->_db -> select("select soil from soilTypes where id=$soilTypeId");
 			$err = $this->_db->error();
-	    if (!empty($err or FALSE == $result)) 
+	    if (!empty($err) or FALSE == $result)
 	    	throw new Exception("select failed for soil type with id=($soilTypeId): ".$err);
 	    $soilType = $result[0]['soil'];
 	  }

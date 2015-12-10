@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2015 at 02:55 PM
+-- Generation Time: Dec 09, 2015 at 04:20 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -31,19 +31,7 @@ CREATE TABLE IF NOT EXISTS `locations` (
   `lat` decimal(10,5) DEFAULT NULL,
   `lon` decimal(10,5) DEFAULT NULL,
   `locationNotes` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `locations`
---
-
-INSERT INTO `locations` (`id`, `lat`, `lon`, `locationNotes`) VALUES
-(1, NULL, NULL, 'Rocky Mtn National Park'),
-(2, '41.00000', '-105.00000', NULL),
-(3, '41.00000', '-105.00000', NULL),
-(4, '41.00000', '-105.00000', 'waverly'),
-(5, '41.00000', '-105.00000', NULL),
-(6, '40.73131', '-105.08469', 'poudre canyon');
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -60,17 +48,7 @@ CREATE TABLE IF NOT EXISTS `observations` (
   `weatherId` int(11) DEFAULT NULL,
   `soilTypeId` int(11) DEFAULT NULL,
   `userId` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `observations`
---
-
-INSERT INTO `observations` (`id`, `observationDate`, `notes`, `plantId`, `locationId`, `weatherId`, `soilTypeId`, `userId`) VALUES
-(8, '2015-12-06 00:00:00', NULL, 32, 3, 27, 4, 1),
-(9, '2015-12-06 00:00:00', NULL, 33, 4, 28, 3, 1),
-(10, '2015-12-06 00:00:00', NULL, 34, 5, 29, 2, 1),
-(11, '2015-12-06 00:00:00', 'Moose was eating it.', 35, 6, 30, 1, 1);
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -81,18 +59,7 @@ INSERT INTO `observations` (`id`, `observationDate`, `notes`, `plantId`, `locati
 CREATE TABLE IF NOT EXISTS `plants` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `plants`
---
-
-INSERT INTO `plants` (`id`, `name`) VALUES
-(3, 'columbine'),
-(4, 'toadflax'),
-(32, 'dandilion'),
-(33, 'beanstalk'),
-(35, 'clover');
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -128,20 +95,20 @@ CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL,
   `firstName` varchar(45) DEFAULT NULL,
   `lastName` varchar(45) DEFAULT NULL,
-  `email` varchar(45) DEFAULT NULL,
-  `pass` varchar(50) NOT NULL,
+  `email` varchar(45) NOT NULL,
+  `pass` varchar(50) DEFAULT NULL,
   `name` varchar(20) NOT NULL,
   `roleStr` varchar(20) NOT NULL DEFAULT 'submitter',
   `role` int(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `firstName`, `lastName`, `email`, `pass`, `name`, `roleStr`, `role`) VALUES
-(1, 'guest', 'anonymous', NULL, '', 'guest', 'submitter', 0),
-(2, 'admin', 'admin', NULL, 'admin', 'admin', 'admin', 0);
+(1, 'guest', 'anonymous', 'guest', '', 'guest', 'submitter', 0),
+(2, 'admin', 'admin', 'admin', 'admin', 'admin', 'admin', 1);
 
 -- --------------------------------------------------------
 
@@ -154,25 +121,7 @@ CREATE TABLE IF NOT EXISTS `weather` (
   `tempF` float DEFAULT NULL,
   `windMPH` float DEFAULT NULL,
   `weatherNotes` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `weather`
---
-
-INSERT INTO `weather` (`id`, `tempF`, `windMPH`, `weatherNotes`) VALUES
-(19, 25.23, NULL, NULL),
-(20, 25.23, NULL, NULL),
-(21, 25.23, NULL, NULL),
-(22, 23.43, NULL, NULL),
-(23, 23.43, NULL, NULL),
-(24, 23.43, NULL, NULL),
-(25, 23.43, NULL, NULL),
-(26, 23.43, NULL, NULL),
-(27, 23.43, NULL, NULL),
-(28, 28, NULL, NULL),
-(29, 23.43, NULL, NULL),
-(30, 43.27, NULL, NULL);
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
 
 --
 -- Indexes for dumped tables
@@ -224,17 +173,17 @@ ALTER TABLE `weather`
 -- AUTO_INCREMENT for table `locations`
 --
 ALTER TABLE `locations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `observations`
 --
 ALTER TABLE `observations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT for table `plants`
 --
 ALTER TABLE `plants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=61;
 --
 -- AUTO_INCREMENT for table `soiltypes`
 --
@@ -244,12 +193,12 @@ ALTER TABLE `soiltypes`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `weather`
 --
 ALTER TABLE `weather`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=53;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

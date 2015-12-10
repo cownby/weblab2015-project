@@ -35,15 +35,15 @@
         	$item = new PlantObservation();
           $arr = array();
           $arr["id"] = isset($_GET["id"])?$_GET["id"]:'';
-          $arr["PlantName"] = isset($_GET["plantName"])?$_GET["plantName"]:'undefined';
-          $arr["notes"] = isset($_GET["notes"])?$_GET["notes"]:'';
+          $arr["PlantName"] = isset($_GET["plantName"])?$_GET["plantName"]:'entryTracker:undefined';
+          $arr["notes"] = isset($_GET["notes"])?$_GET["notes"]:'entryTracker:unset';
           $arr["observationDate"] = isset($_GET["observationDate"])?$_GET["observationDate"]:'';
-          $arr["locationNotes"] = isset($_GET["locationNotes"])?$_GET["locationNotes"]:'';
-          $arr["lat"] = isset($_GET["lat"])?$_GET["lat"]:'9';
-          $arr["lon"] = isset($_GET["lon"])?$_GET["lon"]:'9';
-          $arr["tempF"] = isset($_GET["tempF"])?$_GET["tempF"]:'99';
-          $arr["soilTypeId"] = isset($_GET["soil"])?$_GET["soil"]:'0';
-          $arr["userId"] = $user->getId();
+          $arr["LocationNotes"] = isset($_GET["locationNotes"])?$_GET["locationNotes"]:'entryTracker:unset';
+          $arr["Latitude"] = isset($_GET["lat"])?$_GET["lat"]:'9';
+          $arr["Longitude"] = isset($_GET["lon"])?$_GET["lon"]:'9';
+          $arr["DegreesF"] = isset($_GET["tempF"])?$_GET["tempF"]:'99';
+          $arr["SoilId"] = isset($_GET["soil"])?$_GET["soil"]:'0';
+          $arr["UserId"] = $user->getId();
 
           $item->hydrate($arr);
           $ObservationMgr->save($item);

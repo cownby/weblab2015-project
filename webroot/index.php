@@ -104,16 +104,4 @@
 	  return ($arr);
 	}
 	
-	function defineUser()
-	{
-		//if no user is logged in, then use the guest account
-		if (!isset($_SESSION['FFuser']))
-		{
-			$userManager = new UserManager();
-			$user = $userManager->getUserByEmail("guest");
-			if ($user == FALSE) die ("Cannot access guest account");
-			$_SESSION['FFuser'] = serialize($user);	
-		}
-	}
-
 ?>
