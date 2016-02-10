@@ -26,7 +26,11 @@
 			<th>Soil Type</th>
 		</tr>
 		</thead>
-	  <?php foreach($items as $row){ ?>
+	  <?php 
+	  	if (empty($items)) 
+	      echo "<p> No items yet logged in database </p>";
+	    else
+	      foreach($items as $row){ ?>
 	  <tr>
 	    <td><?= $row['id'] ?></td>
 	    <td><?= $row['PlantName'] ?></td>
