@@ -61,6 +61,7 @@
 <?php
 
 ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript">
 (function() 
 {
@@ -105,6 +106,7 @@
 					//document.write ('<p> longitude' + pos.lng +'</p>');
 					document.getElementById("lat").value = pos.lat;
 					document.getElementById("lon").value = pos.lng;
+					getWeather(pos.lat,pos.lng);
 	    	}, 
 	    	function()
 	    	{
@@ -122,6 +124,29 @@
  
   }
 
+
+  function getWeather(lat,lon)
+  {
+		var urlStr = "http://api.openweathermap.org/data/2.5/weather?lat="+ lat+"&lon"+lon
+			+"&appid=32d87fad13abd43ddaf60e687ed1adc1" ;
+			
+      $.ajax({
+          url: urlStr,
+          timeout: 30000,
+          method: 'GET',
+          dataType: 'jsonp',
+          success: function (data) {
+
+						alert("success!");
+						dump(data);
+		
+          },
+          error: function (jqXHR, textStatus, errorThrown) {
+              alert("Unable to retrieve weather data: " + errorThrown);
+          }
+      });
+            
+  }
 </script>
 
   <!--Primary content area ends here--> 

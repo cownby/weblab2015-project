@@ -18,7 +18,12 @@ class Configuration
 		else
 			$this->_configFile = "C:/config/config.ini";
 		
-		$this->_configArray = parse_ini_file ( $this->_configFile );
+		if (file_exists ( $this->_configFile ))
+			$this->_configArray = parse_ini_file ( $this->_configFile );
+		else
+		{
+			die ("Configuration constructor. Config file not found: " . $this->_configFile);
+		}			
 
 	}
 	
