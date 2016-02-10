@@ -11,8 +11,12 @@
 
 
 <?php  
-	
-	$configArray = parse_ini_file ( 'config.ini' );
+	$intermediateConfigFile = 'config.ini';
+	if (! file_exists ( $intermediateConfigFile ))
+	{
+		die ("index.php; Intermediate config file not found: " . $intermediateConfigFile);
+	}
+	$configArray = parse_ini_file ( $intermediateConfigFile );
 	$config = new Configuration($configArray['realConfigFile']);
   $config->SaveInSession();
 
