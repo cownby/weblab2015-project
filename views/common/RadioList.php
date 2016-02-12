@@ -18,7 +18,7 @@ class RadioList
    
   private function BuildOptionsWithArrayIndices($items) 
   {
-  
+  	if (!empty($items))
 			foreach($items as $key => $val) 
 			{ 
 				$this->options .= '<input type=radio name='.$this->name.' id='.$key.' value='.$val . ' >'
@@ -28,7 +28,7 @@ class RadioList
     }
   private function BuildOptionsWithDbRows($rows,$idCol,$valCol,$defaultValToCheck) 
   {
-
+  	if (!empty($rows))
 			foreach($rows as $index => $row) 
 			{ 
 				($row[$idCol] == $defaultValToCheck) ? $buttonCheck='checked': $buttonCheck = '';
@@ -40,7 +40,7 @@ class RadioList
 
   private function BuildOptions() 
   {
-  
+  	if (!empty($this->items))
 			foreach($this->items as $key => $val) 
 			{ 
 				$this->options .= '<input type=radio name='.$this->name.' id='.$key.' value='.$key . '>'
