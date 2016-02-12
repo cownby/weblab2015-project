@@ -37,7 +37,7 @@ final class Weather
 		if (isset($_SESSION['openweathermapKey']))
 			$this->urlBase .= $_SESSION['openweathermapKey'];
 		else
-			die ("openweathermapKey not found in session");
+			error_log ("openweathermapKey not found in session");
 	}
 
 	public function getTemp(){return $this->currentTempF;}

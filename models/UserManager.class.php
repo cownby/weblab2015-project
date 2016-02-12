@@ -81,7 +81,7 @@ class UserManager {
     }
     catch   (Exception $e) 
 		{
-    	error_log( 'Caught exception: '.  $e->getMessage() );
+    	error_log( 'UserManager.getUserByEmail: '.  $e->getMessage() );
 		} 
 		     
     return $user;
@@ -89,7 +89,8 @@ class UserManager {
   }
  
  
-  public function getAllUsers(){
+  public function getAllUsers()
+  {
     
       $users = array();
           
@@ -105,7 +106,8 @@ class UserManager {
       
   }
 
-  public function exportUsers(){
+  public function exportUsers()
+  {
     
     
     $users = array();
@@ -125,29 +127,38 @@ class UserManager {
 	public function getUserId($email)
 	{
 		//input: User email string
+		$email= $this->_db -> quote($email);
+		$queryStr = "select id from users where email= $email;";
    try
   	{
-	    $userId = $this->_db -> query("select id from users where email= $email;");
+	    $result = $this->_db -> query($queryStr);
 	    
 	    // test for error conditions
       $err = $this->_db->error();
 	    if (!empty($err)) 
-	    	throw new Exception("user insert failed: ".$err);
+	    	throw new Exception("select failed: ".$err);
 	    
-	    return $userId;	
+	    
+	    //pull from result
+	    $userId = false;
+	    foreach($result as $arr){
+        $userId = isset($arr["id"])?$arr["id"]:false ;
+      }      
+	      return $userId;	
     }
     catch   (Exception $e) 
 		{
-    	error_log( 'Caught exception: '.  $e->getMessage() );
+    	error_log( 'UserManager.getUserId: '.  $e->getMessage() . ". Query: ".$queryStr );
 		}    
 		
 		return false;  
 		
 	}
 
-  public function save($user){
+  public function save($user)
+  {
 
-     try
+    try
   	{
 			if (null != $user->getId()) 
 			{
@@ -167,11 +178,12 @@ class UserManager {
     }
     catch   (Exception $e) 
 		{
-    	error_log( 'Caught exception: '.  $e->getMessage() );
+    	error_log( 'UserManager.save exception: '.  $e->getMessage() );
 		} 
   }
 
-  public function update($user){
+  public function update($user)
+  {
     
     //if ($user->getId()) {
     if ($user->getMail()) {
@@ -181,7 +193,8 @@ class UserManager {
     }
   }
   
-  private function _add($user){
+  private function _add($user)
+  {
     
     $name = $this->_db -> quote($user->getName());
     $email = $this->_db -> quote($user->getMail());
@@ -189,11 +202,11 @@ class UserManager {
     $pass = $this->_db->quoteOrNull($user->getPassword());
     //$pass = password_hash($user->getPassword(), PASSWORD_BCRYPT); //, array("cost" => 10));
     //$pass = $this->_db -> quote($pass);
-    
+    $queryStr = "insert into users (name, email, pass, role) values ($name, $email, $pass, $role);";
     try
   	{
   		
-	    $results = $this->_db -> query("insert into users (name, email, pass, role) values ($name, $email, $pass, $role);");
+	    $results = $this->_db -> query($queryStr);
 	    
 	    // test for error conditions
       $err = $this->_db->error();
@@ -202,13 +215,14 @@ class UserManager {
     }
     catch   (Exception $e) 
 		{
-    	error_log( 'Caught exception: '.  $e->getMessage() );
+    	error_log( 'UserManager._add: '.  $e->getMessage() . "\nquery: ".$queryStr );
 		}      
 
   }
   
 
-  private function _update($user){
+  private function _update($user)
+  {
     $db = new Db();
     
     $uid = $db -> quote($user->getId());
@@ -232,7 +246,8 @@ class UserManager {
 
   }
   
-  public function Delete($arg){
+  public function Delete($arg)
+  {
     
     if(!is_numeric($arg)) return FALSE;
     

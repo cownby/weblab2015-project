@@ -83,7 +83,8 @@
 		try
 		{
     	$userManager = new UserManager();
-    	if(! $userManager->getUserId($_GET["email"]))
+    	$userId = $userManager->getUserId($_GET["email"]);
+    	if(! $userId)
     	{
 	    	$user = new User();
     		$user->hydrate(populateUserArrayFromGet());
@@ -93,12 +94,12 @@
     		$stat = 'Registration successful; '.$user->getName() . " logged in";
     	}
     	else
-    		$stat = 'Duplicate user email';
+    		$stat = 'Registration failed; duplicate user email';
 
 		}
 		catch (Exception $e)
 		{
-			error_log('Caught exception: ' . $e->getMessage(),0);
+			error_log('registerUser Exception: ' . $e->getMessage(),0);
 			$stat = $e->getMessage();
 		}			
 		return $stat;

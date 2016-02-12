@@ -56,7 +56,7 @@ class ObservationMgr
 		}
 		catch   (Exception $e) 
 		{
-			error_log('Caught exception: ' . $e->getMessage(),0);
+			error_log('ObservationMgr.getObservation: ' . $e->getMessage(),0);
 			return FALSE;
 		}       
 
@@ -81,7 +81,7 @@ class ObservationMgr
     }
     catch   (Exception $e) 
 		{
-    	error_log( 'Caught exception: '.  $e->getMessage() );
+    	error_log( 'ObservationMgr.getAllObservationRecords: '.  $e->getMessage() );
     	$rows = FALSE;
 
 		}      
@@ -109,7 +109,7 @@ class ObservationMgr
     }
     catch   (Exception $e) 
 		{
-    	error_log( 'Caught exception: '.  $e->getMessage() );
+    	error_log( 'ObservationMgr.getAllObservationsAsMSQLiObjects: '.  $e->getMessage() );
     	$rows = FALSE;
 
 		}      
@@ -134,7 +134,7 @@ class ObservationMgr
     }
     catch   (Exception $e) 
 		{
-    	error_log( 'Caught exception: '.  $e->getMessage() );
+    	error_log( 'ObservationMgr.getAllObservations: '.  $e->getMessage() );
 		}      
     return $data;    
       
@@ -171,7 +171,7 @@ class ObservationMgr
 	  }
 		catch  (Exception $e) 
 		{
-    	error_log('Caught exception: ' . $e->getMessage(),0);
+    	error_log('ObservationMgr.getSoilTypes: ' . $e->getMessage(),0);
 		}
 		return ($soilType);
 		
@@ -242,12 +242,12 @@ class ObservationMgr
 	 		$err = $this->_db->error();
 	    if (!empty($err))
 	    {
-				throw new Exception("ObservationMgr._add: Problem inserting observation. ".$err);
+				throw new Exception("Problem inserting observation. ".$err);
 			}
 		}
 		catch   (Exception $e) 
 		{
-			error_log('Caught exception: ' . $e->getMessage(),0);
+			error_log('ObservationMgr._add: ' . $e->getMessage(),0);
 		}  
   }
     
@@ -259,17 +259,23 @@ class ObservationMgr
     $soilTypeId = $this->_quoteOrNull($item->getSoilTypeId());
 
 		$stmt = "update observations set notes=$notes, observationDate=$dateObserved, soilTypeId=$soilTypeId where id=$id";
-		$result = $this->_db -> query($stmt);
- 		$err = $this->_db->error();
-    if (!empty($err))
-    {
-			throw new Exception("ObservationMgr._update: Problem updating. ".$err);
+		try
+		{
+			$result = $this->_db -> query($stmt);
+	 		$err = $this->_db->error();
+	    if (!empty($err))
+	    {
+				throw new Exception("Problem updating. ".$err);
+			}
+			
+			$this->_updatePlant($item);
+			$this->_updateWeather($item);
+			$this->_updateLocation($item);
 		}
-		
-		$this->_updatePlant($item);
-		$this->_updateWeather($item);
-		$this->_updateLocation($item);
-		
+		catch   (Exception $e) 
+		{
+			error_log('ObservationMgr._update: ' . $e->getMessage(),0);
+		} 		
   }
  
  	//Plants
@@ -285,13 +291,13 @@ class ObservationMgr
 	    $err = $this->_db->error();
 	    if (!empty($err))
 	    {
-				throw new Exception("ObservationMgr._addPlant: Problem inserting plant. ".$err);
+				throw new Exception("Problem inserting plant. ".$err);
 			}
  
 		}
 		catch   (Exception $e) 
 		{
-			error_log('Caught exception: ' . $e->getMessage(),0);
+			error_log('ObservationMgr._addPlant: ' . $e->getMessage(),0);
 		} 
 		return ($id); 
 	 	
@@ -307,13 +313,13 @@ class ObservationMgr
 	    $err = $this->_db->error();
 	    if (!empty($err))
 	    {
-				throw new Exception("_updatePlant: Problem updating plant ($id): $err");
+				throw new Exception("Problem updating plant ($id): $err");
 			}
  
 		}
 		catch   (Exception $e) 
 		{
-			error_log('Caught exception: ' . $e->getMessage(),0);
+			error_log('ObservationMgr._updatePlant:  ' . $e->getMessage(),0);
 		}  
 	 	
 	 }

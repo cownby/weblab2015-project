@@ -48,7 +48,7 @@ class Configuration
 		}
 		catch (Exception $e) 
 		{
-			echo 'Caught exception: ',  $e->getMessage(), "\n";
+			echo 'Configuration.SaveInSession: ',  $e->getMessage(), "\n";
 		}
 	}
 }

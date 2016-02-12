@@ -106,7 +106,7 @@
 					//document.write ('<p> longitude' + pos.lng +'</p>');
 					document.getElementById("lat").value = pos.lat;
 					document.getElementById("lon").value = pos.lng;
-					getWeather(pos.lat,pos.lng);
+					//getWeather(pos.lat,pos.lng);
 	    	}, 
 	    	function()
 	    	{
