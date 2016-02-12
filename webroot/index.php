@@ -88,7 +88,9 @@
 	    	$user = new User();
     		$user->hydrate(populateUserArrayFromGet());
     		$userManager->save($user);
-    		$stat = 'Registration Successful';
+    		if (session_status() == PHP_SESSION_NONE) {session_start();}
+				$_SESSION['FFuser'] = serialize($user);
+    		$stat = 'Registration successful; '.$user->getName() . " logged in";
     	}
     	else
     		$stat = 'Duplicate user email';
