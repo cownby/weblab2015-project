@@ -1,7 +1,8 @@
 # Fall 2015 Weblab Project: Flora Information Collection System
 
 #Overview
-The FICS is an online tool to collect plant information from the field, submit it to a database, and report. 
+The FICS is an online tool to collect plant information from the field, submit it to a database, and report.  
+Note this is a class exercise and not a production implementation: http://talldogsolutions.com/WebLab/project/webroot/
 
 ##Collection
 The collection form includes:
@@ -27,7 +28,7 @@ The data collected is stored in a mySQL relational database.
 ##Reporting
 Reporting is a secured operation, i.e., password protected, with one administrative user. Data is downloadable in csv format.
 
-#Implementation
+##Implementation
 FICS is implemented with 
 * HTML5/CSS
 * PHP
@@ -35,6 +36,14 @@ FICS is implemented with
 * jQuery
 * Bootstrap
 	
+# What I’d do with more time
+* Full O/RM for the educational benefit
+* Add animal observations with the factory design pattern
+* JavaScript API for weather
+* Logout button
+* User account management
+* Shapefile export for GIS data analysis 
+
 	
 # References
 * http://www.geoplugin.com/examples
