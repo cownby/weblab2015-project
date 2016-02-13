@@ -34,7 +34,7 @@
 <div class="gridContainer clearfix"> 
   <!-- HERO Section starts here -->
   <header class="fluid hero heroHeader">
-    <h1 class="fluid mainHeading headingStyle">Flora Finder</h1>
+    <h1 class="fluid mainHeading headingStyle"><a href="index.php">Flora Finder</a></h1>
     <h6 class="fluid mainTagline textStyle">Help us document Colorado&rsquo;s Flora!</h6>
   </header>
   <!--HERO section ends here--> 

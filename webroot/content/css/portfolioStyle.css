@@ -2,7 +2,7 @@
 
 /* General styles*/
 body{
-	background-color: #F6F6F6;
+	background-color: #FFFFFF;
 }
 h1, h2, h3, h4, h5, h6{
 	font-family: 'montserrat' , sans-serif;
@@ -78,6 +78,15 @@ a:hover {
 	margin-top: 5%;
 	font-size: 48px;
 	line-height: 1em;
+}
+.mainHeading a:link {
+	color: #FFFFFF;
+}
+.mainHeading a:visited {
+	color: #FFFFFF;
+}
+.mainHeading a:hover {
+	color: #8FD268;
 }
 .mainTagline {
 	text-align: center;

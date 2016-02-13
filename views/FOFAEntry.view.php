@@ -31,8 +31,8 @@
 	    <input type="text" id="lat" name="lat" value="">
 		<input type="text" id="lon" name="lon" value="">
 		  
-		<p><label>Weather (temp)</label></p>
-		<input type="text" name="tempF" value="<?php echo $weather->getTemp() ?>" >
+		<p><label>Temperature (F)</label></p>
+		<input type="number" name="tempF" value="<?php echo $weather->getTemp() ?>" >
 		  	  
 		<p><label>Soil Type</label></p>
 		<div id="radioList">
